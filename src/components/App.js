@@ -8,7 +8,7 @@ import { CATEGORIES, TASKS } from "../data";
 function App() {
 
   const [activeButton, setActiveButton] = useState('All')
-  const [addTask, setAddTask] = useState([])
+  const [addTask, setAddTask] = useState(TASKS)
 
   function onAddTask(newTask) {
     setAddTask([...addTask, newTask])
@@ -31,7 +31,7 @@ function App() {
         categories={CATEGORIES}/>
       <TaskList 
         activeButton={activeButton} 
-        tasks={TASKS}
+        tasks={addTask}
       />
     </div>
   );

@@ -25,6 +25,8 @@ function NewTaskForm({categories, onAddTask}) {
       category: selectedOption
     }
     onAddTask(newTask)
+    setDetails('')
+    setSelectedOption('')
   }
 
 
@@ -32,11 +34,11 @@ function NewTaskForm({categories, onAddTask}) {
     <form className="new-task-form" onSubmit={handleSubmit}>
       <label>
         Details
-        <input type="text" name="text" value={details} onChange={handleDetailChange}/>
+        <input type="text" name={details} value={details} onChange={handleDetailChange}/>
       </label>
       <label>
         Category
-        <select name="category" value={selectedOption} onChange={handleDropDown}>
+        <select name={selectedOption} value={selectedOption} onChange={handleDropDown}>
           {categoryDropDown}
         </select>
       </label>
