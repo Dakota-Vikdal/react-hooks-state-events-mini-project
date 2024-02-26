@@ -1,19 +1,38 @@
-import React from "react";
+import React, {useState} from "react";
 import CategoryFilter from "./CategoryFilter";
 import NewTaskForm from "./NewTaskForm";
 import TaskList from "./TaskList";
 
 import { CATEGORIES, TASKS } from "../data";
-console.log("Here's the data you're working with");
-console.log({ CATEGORIES, TASKS });
 
 function App() {
+
+  const [activeButton, setActiveButton] = useState('All')
+  const [addTask, setAddTask] = useState([])
+
+  function onAddTask(newTask) {
+    setAddTask([...addTask, newTask])
+  }
+
+  function handleClick(category) {
+    setActiveButton(category);
+  }
+
   return (
     <div className="App">
       <h2>My tasks</h2>
-      <CategoryFilter />
-      <NewTaskForm />
-      <TaskList />
+      <CategoryFilter 
+        activeButton={activeButton} 
+        categories={CATEGORIES}
+        handleClick={handleClick}
+      />
+      <NewTaskForm 
+        onAddTask={onAddTask} 
+        categories={CATEGORIES}/>
+      <TaskList 
+        activeButton={activeButton} 
+        tasks={TASKS}
+      />
     </div>
   );
 }
